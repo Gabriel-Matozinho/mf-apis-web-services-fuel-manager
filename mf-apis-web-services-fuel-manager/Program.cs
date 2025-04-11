@@ -1,4 +1,7 @@
 
+using mf_apis_web_services_fuel_manager.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace mf_apis_web_services_fuel_manager
 {
     public class Program
@@ -10,6 +13,10 @@ namespace mf_apis_web_services_fuel_manager
             // Add services to the container.
 
             builder.Services.AddControllers();
+
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
